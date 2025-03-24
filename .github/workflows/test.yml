@@ -15,5 +15,9 @@ jobs:
                 java-version: '11'
             - name: PMD action
               uses: pmd/pmd-github-action@v2
+              id: pmd
               with:
                 rulesets: 'ruleset.xml'
+            - name: Fail build if there are violations
+              if: steps.pmd.outputs.violations != 0
+              run: exit 1
