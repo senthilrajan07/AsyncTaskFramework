@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TimeInQueue__c</fullName>
+    <description>Time the task has been waiting in the queue in seconds.</description>
+    <inlineHelpText>Time the task has been waiting in the queue in seconds.</inlineHelpText>
+    <externalId>false</externalId>
+    <formula>IF ( ISBLANK(LastRunStartTime__c) &amp;&amp; ISBLANK(LastRunEndTime__c), (NOW() -  CreatedDate)*24*60*60,
+   IF(  IsCompleted__c == false, (NOW() - LastRunEndTime__c)*24*60*60, NULL))</formula>
+    <formulaTreatBlanksAs>BlankAsBlank</formulaTreatBlanksAs>
+    <label>Time in queue</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
